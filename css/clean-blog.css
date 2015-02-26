@@ -35,10 +35,16 @@ blockquote>:last-child {
   margin-bottom: 0
 }
 
-ol,ul {
+ol,
+ul {
   padding-left: 2em
 }
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: relative;
   margin-top: 1em;

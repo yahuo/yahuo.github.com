@@ -31,7 +31,7 @@ docker rmi <imageID>          #删除镜像
 ### 映射端口访问
 
 ```bash
-docker run -d -p 22 #imageID /usr/sbin/sshd -D
+docker run -d -p 22 <imageID> /usr/sbin/sshd -D
 ```
 > `-p 22 `后面加上`-p 80:8080`映射tomcat端口
 
