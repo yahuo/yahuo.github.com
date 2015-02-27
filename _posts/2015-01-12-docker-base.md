@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "docker学习笔记"
+title:      "docker学习笔记(持续更新)"
 date:       2015-01-12 11:05:00
 categories: online
 author:     "金鑫"

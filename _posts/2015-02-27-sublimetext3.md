@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "sublimetext学习笔记"
+title:      "sublimetext学习笔记(持续更新)"
 date:       2015-02-27 11:05:00
 categories: online
 author:     "金鑫"
@@ -19,7 +19,7 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 
 ```json
 {
-  "ignored_packages": 
+  "ignored_packages":
   [
   	"Vintage",
   	"Package Control"
