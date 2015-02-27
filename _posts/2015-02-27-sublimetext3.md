@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "sublimetext学习笔记(持续更新)"
-date:       2015-02-27 11:05:00
+date:       2015-02-27 16:23:00
 categories: online
 author:     "金鑫"
 header-img: "img/post-bg-03.jpg"
