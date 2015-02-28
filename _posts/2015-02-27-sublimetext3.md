@@ -8,7 +8,7 @@ header-img: "img/post-bg-03.jpg"
 ---
 
 ## package controller 安装(st3)
-快捷键`ctrl+``,输入
+快捷键<kbd>Ctrl</kbd>+<kbd>`</kbd>,输入
 
 ```python
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
