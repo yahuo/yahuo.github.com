@@ -15,7 +15,7 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 ```
 
 ## package controller安装之后不显示
-打开 `Preferences.sublime-settings` 文件,删除`Package Control`
+打开 `Preferences.sublime-settings` 文件,删除~~Package Control~~
 
 ```json
 {
