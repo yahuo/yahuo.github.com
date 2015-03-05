@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "docker学习笔记(持续更新)"
-date:       2015-02-27 16:30:00
+date:       2015-02-27 16:32:00
 categories: online
 author:     "金鑫"
 header-img: "img/post-bg-02.jpg"
