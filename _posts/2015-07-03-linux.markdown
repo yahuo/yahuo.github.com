@@ -1,0 +1,33 @@
+---
+layout:     post
+title:      "sublimetext学习笔记(持续更新)"
+date:       2015-07-3 09:30:00
+categories: online
+author:     "金鑫"
+header-img: "img/post-bg-03.jpg"
+---
+
+## centos7模式切换
+- 命令模式
+```bash
+systemctl set-default multi-user.target
+```
+- 图形模式
+```bash
+systemctl set-default graphical.target
+```
+
+## 防火墙端口放行
+开放`80`,`3306`端口
+```bash
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+firewall-cmd --permanent --add-service=mysql
+firewall-cmd --reload
+```
+此时，httpd这个服务添加到了`/etc/firewalld/zones/public.xml`这个zone配置文件中，所以firewalld才能够据此放行。
+
+## 关闭防火前
+```bash
+systemctl stop firewalld
+```
