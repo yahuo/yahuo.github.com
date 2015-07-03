@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "sublimetext学习笔记(持续更新)"
+title:      "linux学习笔记(持续更新)"
 date:       2015-07-3 09:30:00
 categories: online
 author:     "金鑫"
