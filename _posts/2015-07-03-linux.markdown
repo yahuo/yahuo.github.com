@@ -10,11 +10,13 @@ header-img: "img/post-bg-03.jpg"
 ## centos7模式切换
 
 - 命令模式
+
 ```bash
 systemctl set-default multi-user.target
 ```
 
 - 图形模式
+
 ```bash
 systemctl set-default graphical.target
 ```
