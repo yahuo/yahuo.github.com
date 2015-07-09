@@ -21,6 +21,12 @@ systemctl set-default multi-user.target
 systemctl set-default graphical.target
 ```
 
+## 查看端口是否被防火墙阻挡
+
+```bash
+firewall-cmd --query-port=80/tcp
+```
+
 ## 防火墙端口放行
 
 开放`80`,`3306`端口
@@ -32,10 +38,156 @@ firewall-cmd --permanent --add-service=mysql
 firewall-cmd --reload
 ```
 
+或
+
+```bash
+firewall-cmd --permanent --add-port=80/tcp
+firewall-cmd --permanent --add-port=3306/tcp
+firewall-cmd --reload
+```
+
 此时，httpd这个服务添加到了`/etc/firewalld/zones/public.xml`这个zone配置文件中，所以firewalld才能够据此放行。
 
-## 关闭防火前
+## 关闭防火墙
 
 ```bash
 systemctl stop firewalld
 ```
+
+## linux文件权限
+
+查看文件权限
+
+```bash
+ls -l file1.xml
+```
+
+显示
+
+
+|    -     |    rw-     |     r--     |     r--     | root |  root |
+|----------|------------|-------------|-------------|------|-------|
+| 文件类型 | user的权限 | group的权限 | other的权限 | group | user |
+
+修改文件权限
+
+|         命令         |              说明              |  相当于   |
+|----------------------|--------------------------------|-----------|
+| chmod a-rw file1.xml | 所有人去掉读写权限             | --------- |
+| chmod u+rw file1.xml | 文件所有者加上读写权限         | rw------- |
+| chmod g+rw file1.xml | 文件所有者所在群组加上读写权限 | rw-rw---- |
+| chmod o+rw file1.xml | 给其他人加上读写权限           | rw-rw-rw- |
+| chmod 754 file1.xml  |                                | rwxrxr--  |
+| chmod 644 file1.xml  |                                | rw-r--r-- |
+
+修改文件夹及其子文件夹的权限
+```bash
+chmod -R 744 FileDir
+```
+
+## linux修改所属用户和所属用户组
+
+|             命令             |                说明                |
+|------------------------------|------------------------------------|
+| chown jinxin fileA           | 修改fileA的所属用户组为jinxin      |
+| chown :jinxin fileA          | 修改fileA的所属用户为jinxin        |
+| chown jinxin:jinxin fileA    | 修改fileA的user和group为jinxin     |
+| chown jinxin:jinxin -R fileA | 递归修改fileA的user和group为jinxin |
+
+## 安装nexus
+
+#### 解压缩,简历软连接
+
+```bash
+tar -zxvf nexus-2.11.2-03-bundle.tar.gz
+```
+
+在文件夹`/usr/local/nexus`下将生成两个文件夹`nexus-2.11.2-03`和`sonatype-work`
+
+在`/usr/local/nexus`路径下创建一个软连接指向`nexus-2.11.2-03`,
+
+```bash
+ln -s nexus-2.11.2-03 nexus
+```
+
+#### 设置开机启动
+
+```bash
+sudo cp /usr/local/nexus/nexus/bin/nexus /etc/init.d/
+```
+
+#### 修改启动脚本
+
+```bash
+vim /etc/init.d/nexus
+```
+
+添加以下变量：
+
+```bash
+NEXUS_HOME=/usr/local/nexus/nexus
+PLATFORM=linux-x86-64
+PLATFORM_DIR="${NEXUS_HOME}/bin/jsw/${PLATFORM}"
+```
+
+修改以下变量：
+
+```bash
+WRAPPER_CMD="${PLATFORM_DIR}/wrapper"
+WRAPPER_CONF="${PLATFORM_DIR}/../conf/wrapper.conf"
+PIDDIR="${NEXUS_HOME}"
+```
+
+修改如下变量，设置启动用户为root：
+
+```bash
+RUN_AS_USER=root
+```
+
+#### 执行如下命令启动、停止nexus服务
+
+```bash
+sudo service nexus start
+sudo service nexus stop
+```
+
+#### 访问
+
+http//ip:8081/nexus, `8081`为默认的端口号，要修改端口号可进入`nexus-2.1.2-bundle\nexus-2.1.2\conf\`打开`nexus.properties`文件，修改`application-port`属性值就可以了,默认登录用户名为admin，密码admin123
+
+## Maven安装
+
+#### 解压缩
+
+```bash
+cd /usr/local
+
+sudo tar -zxvf apache-maven-3.2.5-bin.tar.gz
+```
+
+#### 建立软连接
+
+```bash
+ln -s apache-maven-3.2.5 maven
+```
+
+#### 配置环境变量
+
+`sudo vim /etc/profile`
+
+```bash
+
+JAVA_HOME=/usr/java/jdk1.7.0_75
+
+JRE_HOME=/usr/java/jdk1.7.0_75/jre
+
+MAVEN_HOME=/usr/local/maven
+
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$MAVEN_HOME/bin
+
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+
+export JAVA_HOME JRE_HOME PATH CLASSPATH MAVEN_HOME
+```
+
+修改后，执行`source /etc/profiile` 使修改生效，执行`mvn --version`应该可以看到mvn命令可以使用。
