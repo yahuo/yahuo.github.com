@@ -14,7 +14,7 @@ author: Jinxin
 production_url: "blog.yahuo.info"
 
 # Build settings
-highlighter: pygments
+highlighter: rouge
 markdown: redcarpet  # [ maruku | rdiscount | kramdown | redcarpet ]
 markdown_ext:  markdown,mkd,mkdn,md
 textile_ext:   textile
