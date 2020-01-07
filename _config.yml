@@ -4,14 +4,14 @@ header-img: img/home-bg.jpg
 email: yahuoking@gmail.com
 description: "Write your site description here. It will be used as your sites meta description as well!"
 baseurl: ""
-url: "http://blog.yahuo.me"
+url: "http://blog.yahuo.info"
 twitter_username: yahuo
 github_username:  yahuo
 facebook_username:  yahuoking
 weibo_username: moushayiciyahuo
 author: Jinxin
 
-production_url: "blog.yahuo.me"
+production_url: "blog.yahuo.info"
 
 # Build settings
 highlighter: pygments
